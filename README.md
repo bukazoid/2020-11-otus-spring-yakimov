@@ -1,1 +1,2 @@
-# 2020-11-otus-spring-yakimov
+Якимов Павел Павлович, 
+Разработчик на Spring Framework, 2020-11
