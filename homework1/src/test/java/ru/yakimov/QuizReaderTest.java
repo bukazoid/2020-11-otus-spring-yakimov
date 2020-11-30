@@ -12,7 +12,7 @@ import org.junit.rules.TestName;
 import lombok.extern.slf4j.Slf4j;
 import ru.yakimov.domain.QuizQuestion;
 import ru.yakimov.services.QuestionGenerator;
-import ru.yakimov.services.QuizReader;
+import ru.yakimov.services.QuizReaderCsv;
 
 @Slf4j
 public class QuizReaderTest {
@@ -23,7 +23,7 @@ public class QuizReaderTest {
 	public void readFileTest() {
 		log.info("test: {}", name.getMethodName());
 
-		List<QuizQuestion> questions = new QuizReader("testquiz.csv", new QuestionGenerator()).readQuestions();
+		List<QuizQuestion> questions = new QuizReaderCsv("testquiz.csv", new QuestionGenerator()).readQuestions();
 
 		// uncomment next line to get more info
 		// log.info("questions: {}", questions);

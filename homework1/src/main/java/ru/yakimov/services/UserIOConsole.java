@@ -1,30 +1,27 @@
 package ru.yakimov.services;
 
-public class Shell {
+public class UserIOConsole implements UserIO {
 	/**
 	 * predefined answer till we have proper input system
 	 */
-	final String answer = "1";
+	final static String answer = "1";
 
-	public void printLine(String line) {
-		System.out.println(line);
+	@Override
+	public void printLine(String format, Object... params) {
+		System.out.println(String.format(format, (Object[]) params));
 	}
 
-	public void printLine(String text, int mult) {
-		for (int i = 0; i < mult; i++) {
-			printText(text);
-		}
-		printLine();
-	}
-
+	@Override
 	public void printLine() {
 		printLine("");
 	}
 
+	@Override
 	public void printText(String text) {
 		System.out.print(text);
 	}
 
+	@Override
 	public String readInput() {
 		try {
 			// sleep 2-5 seconds to emulate user enter
