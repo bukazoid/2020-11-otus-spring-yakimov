@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.yakimov.domain.QuizQuestion;
@@ -33,12 +34,8 @@ public class QuizReaderCsv implements QuizReader {
 					continue;
 				}
 
-				QuizQuestion qq = quizGenerator.generate(line);
-				if (qq == null) {
-					log.error("can't read question from line: {} ", line);
-				} else {
-					questions.add(qq);
-				}
+				Optional<QuizQuestion> qq = quizGenerator.generate(line);
+				qq.ifPresent(questions::add);
 			}
 
 			return questions;
