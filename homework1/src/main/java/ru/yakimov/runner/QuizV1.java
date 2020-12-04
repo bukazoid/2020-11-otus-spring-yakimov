@@ -4,15 +4,15 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import ru.yakimov.domain.QuizQuestion;
-import ru.yakimov.services.QuestionProcessorV1;
+import ru.yakimov.services.QuestionProcessor;
 import ru.yakimov.services.QuizReader;
 import ru.yakimov.services.UserIO;
 
 @AllArgsConstructor
 public class QuizV1 implements Quiz {
-	QuizReader quizReader;
-	UserIO userIO;
-	QuestionProcessorV1 processor;
+	final private QuizReader quizReader;
+	final private UserIO userIO;
+	final private QuestionProcessor processor;
 
 	@Override
 	public void proceedQuiz() {

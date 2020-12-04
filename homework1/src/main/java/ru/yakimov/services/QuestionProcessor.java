@@ -1,5 +1,7 @@
 package ru.yakimov.services;
 
-public interface QuestionProcessor {
+import ru.yakimov.domain.QuizQuestion;
 
+public interface QuestionProcessor {
+	boolean processQuestion(QuizQuestion question);
 }

@@ -10,9 +10,9 @@ import ru.yakimov.services.UserIO;
 
 @AllArgsConstructor
 public class QuizV2 implements Quiz {
-	QuizReader quizReader;
-	UserIO userIO;
-	QuestionProcessorV1 processor;
+	final private QuizReader quizReader;
+	final private UserIO userIO;
+	final private QuestionProcessorV1 processor;
 
 	@Override
 	public void proceedQuiz() {

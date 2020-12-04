@@ -4,7 +4,7 @@ public class UserIOConsole implements UserIO {
 	/**
 	 * predefined answer till we have proper input system
 	 */
-	final static String answer = "1";
+	final static private String answer = "1";
 
 	@Override
 	public void printLine(String format, Object... params) {

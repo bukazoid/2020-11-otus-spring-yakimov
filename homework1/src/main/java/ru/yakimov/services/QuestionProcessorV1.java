@@ -13,7 +13,7 @@ import ru.yakimov.domain.QuizQuestion;
  *
  */
 public class QuestionProcessorV1 implements QuestionProcessor {
-	UserIO userIO;
+	final private UserIO userIO;
 
 	public QuestionProcessorV1(UserIO shell) {
 		this.userIO = shell;

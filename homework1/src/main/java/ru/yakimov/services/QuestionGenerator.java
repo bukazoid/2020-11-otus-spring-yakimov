@@ -10,7 +10,7 @@ import ru.yakimov.domain.QuizQuestion;
 
 @Slf4j
 public class QuestionGenerator {
-	final String CSV_SEPARATOR = ",";
+	static final String CSV_SEPARATOR = ",";
 
 	public Optional<QuizQuestion> generate(String line) {
 		String[] params = line.split(CSV_SEPARATOR);

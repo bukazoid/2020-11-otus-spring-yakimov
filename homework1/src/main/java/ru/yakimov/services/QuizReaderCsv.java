@@ -14,8 +14,8 @@ import ru.yakimov.domain.QuizQuestion;
 @Slf4j
 public class QuizReaderCsv implements QuizReader {
 
-	final String quizFile;
-	final QuestionGenerator quizGenerator;
+	final private String quizFile;
+	final private QuestionGenerator quizGenerator;
 
 	public QuizReaderCsv(String quizFile, QuestionGenerator quizGenerator) {
 		this.quizFile = quizFile;

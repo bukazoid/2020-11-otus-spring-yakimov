@@ -8,14 +8,14 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class QuizQuestion {
-	final String question;
+	final private String question;
 	/**
 	 * correct answer
 	 */
-	final String answer;
+	final private String answer;
 	/**
 	 * if it is empty then it is a question with free answer
 	 */
-	final List<String> alternativeAnswers;
+	final private List<String> alternativeAnswers;
 
 }
