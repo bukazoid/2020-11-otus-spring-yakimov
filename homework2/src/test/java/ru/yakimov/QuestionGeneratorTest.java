@@ -1,46 +1,51 @@
 package ru.yakimov;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import lombok.extern.slf4j.Slf4j;
 import ru.yakimov.domain.QuizQuestion;
 import ru.yakimov.services.QuestionGenerator;
 
-@Slf4j
+@DisplayName("QuestionGenerator test")
 public class QuestionGeneratorTest {
-	@Rule
-	public TestName name = new TestName();
+	QuestionGenerator qGenerator;
 
+	@BeforeEach
+	void init() {
+		// to reset state between tests if it has any
+		qGenerator = new QuestionGenerator();
+	}
+
+	@DisplayName("question with choise")
 	@Test
 	public void normalQuestionTest() {
-		log.info("test: {}", name.getMethodName());
-
-		QuestionGenerator qGenerator = new QuestionGenerator();
-
 		Optional<QuizQuestion> question = qGenerator.generate("How are you?, fine, so so, perfect!");
+
 		assertFalse(question.isEmpty());
 		assertEquals("fine", question.get().getAnswer());
 	}
 
+	@DisplayName("empty line test")
 	@Test
-	public void commentEmptyLineTest() {
-		log.info("test: {}", name.getMethodName());
+	public void emptyLineTest() {
 
-		QuestionGenerator qGenerator = new QuestionGenerator();
-
-		Optional<QuizQuestion> question = qGenerator.generate("#and now a good question");
-		assertTrue(question.isEmpty());
-		
 		Optional<QuizQuestion> emptyLine = qGenerator.generate(" ");
 		assertTrue(emptyLine.isEmpty());
 
+	}
+
+	@DisplayName("comment line test")
+	@Test
+	public void commentLineTest() {
+
+		Optional<QuizQuestion> question = qGenerator.generate("#and now a good question");
+		assertTrue(question.isEmpty());
 	}
 }

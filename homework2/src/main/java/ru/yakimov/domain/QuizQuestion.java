@@ -18,4 +18,7 @@ public class QuizQuestion {
 	 */
 	final private List<String> alternativeAnswers;
 
+	public boolean isFreeAnswer() {
+		return alternativeAnswers.isEmpty();
+	}
 }

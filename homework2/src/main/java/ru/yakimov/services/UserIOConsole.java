@@ -1,10 +1,14 @@
 package ru.yakimov.services;
 
+import java.util.Scanner;
+
 public class UserIOConsole implements UserIO {
-	/**
-	 * predefined answer till we have proper input system
-	 */
-	final static private String answer = "1";
+
+	final Scanner scanner;
+
+	public UserIOConsole() {
+		scanner = new Scanner(System.in);
+	}
 
 	@Override
 	public void printLine(String format, Object... params) {
@@ -23,14 +27,6 @@ public class UserIOConsole implements UserIO {
 
 	@Override
 	public String readInput() {
-		try {
-			// sleep 2-5 seconds to emulate user enter
-			Thread.sleep(2000 + (int) (Math.random() * 3));
-		} catch (Exception ex) {
-			// do nothing
-		}
-
-		printLine(answer);// simulate user input
-		return answer;
+		return scanner.nextLine();
 	}
 }
