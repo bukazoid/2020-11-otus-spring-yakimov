@@ -13,7 +13,7 @@ import ru.yakimov.services.UserIOConsole;
 public class UserIOConfig {
 
 	@Bean
-	public UserIO getUserIO() {
-		return new UserIOConsole();
+	public UserIO userIO() {
+		return new UserIOConsole(System.in, System.out);
 	}
 }

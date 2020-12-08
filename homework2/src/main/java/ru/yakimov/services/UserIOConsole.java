@@ -1,18 +1,22 @@
 package ru.yakimov.services;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class UserIOConsole implements UserIO {
 
-	final Scanner scanner;
+	final private Scanner scanner;
+	final private PrintStream out;
 
-	public UserIOConsole() {
-		scanner = new Scanner(System.in);
+	public UserIOConsole(InputStream in, PrintStream out /* no symmetry :( */) {
+		scanner = new Scanner(in);
+		this.out = out;
 	}
 
 	@Override
 	public void printLine(String format, Object... params) {
-		System.out.println(String.format(format, (Object[]) params));
+		out.println(String.format(format, params));
 	}
 
 	@Override
@@ -22,7 +26,7 @@ public class UserIOConsole implements UserIO {
 
 	@Override
 	public void printText(String text) {
-		System.out.print(text);
+		out.print(text);
 	}
 
 	@Override

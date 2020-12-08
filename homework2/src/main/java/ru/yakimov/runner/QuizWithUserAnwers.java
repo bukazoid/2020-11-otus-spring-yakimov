@@ -3,23 +3,37 @@ package ru.yakimov.runner;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
 import ru.yakimov.domain.QuizQuestion;
 import ru.yakimov.services.QuestionProcessor;
 import ru.yakimov.services.QuizReader;
 import ru.yakimov.services.UserIO;
-import ru.yakimov.services.WelcomeMessage;
+import ru.yakimov.services.WelcomeMessageService;
 
-@AllArgsConstructor
+@PropertySource("classpath:application.properties")
+@Service
 public class QuizWithUserAnwers implements Quiz {
 	final private QuizReader quizReader;
 	final private UserIO userIO;
 	final private QuestionProcessor processor;
-	final private WelcomeMessage welcome;
+	final private WelcomeMessageService welcome;
 
 	final private int requiredPercent;
+
+	@Autowired
+	public QuizWithUserAnwers(QuizReader quizReader, UserIO userIO, QuestionProcessor processor,
+			WelcomeMessageService welcome, @Value("${requiredPercent}") int requiredPercent) {
+		super();
+		this.quizReader = quizReader;
+		this.userIO = userIO;
+		this.processor = processor;
+		this.welcome = welcome;
+		this.requiredPercent = requiredPercent;
+	}
 
 	@Override
 	public void proceedQuiz() {

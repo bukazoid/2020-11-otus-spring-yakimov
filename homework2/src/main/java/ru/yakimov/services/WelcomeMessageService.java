@@ -3,10 +3,10 @@ package ru.yakimov.services;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WelcomeMessage {
+public class WelcomeMessageService {
 	private final UserIO userIO;
 
-	public WelcomeMessage(UserIO userIO) {
+	public WelcomeMessageService(UserIO userIO) {
 		this.userIO = userIO;
 	}
 

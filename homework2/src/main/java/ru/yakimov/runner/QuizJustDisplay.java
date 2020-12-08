@@ -2,21 +2,19 @@ package ru.yakimov.runner;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import lombok.AllArgsConstructor;
 import ru.yakimov.domain.QuizQuestion;
 import ru.yakimov.services.QuestionProcessor;
 import ru.yakimov.services.QuizReader;
 import ru.yakimov.services.UserIO;
-import ru.yakimov.services.WelcomeMessage;
+import ru.yakimov.services.WelcomeMessageService;
 
 @AllArgsConstructor
 public class QuizJustDisplay implements Quiz {
 	final private QuizReader quizReader;
 	final private UserIO userIO;
 	final private QuestionProcessor processor;
-	final private WelcomeMessage welcome;
+	final private WelcomeMessageService welcome;
 
 
 	@Override
