@@ -1,14 +1,22 @@
 package ru.yakimov.services;
 
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 public class UserIOConsole implements UserIO {
-	/**
-	 * predefined answer till we have proper input system
-	 */
-	final static private String answer = "1";
+
+	final private Scanner scanner;
+	final private PrintStream out;
+
+	public UserIOConsole(InputStream in, PrintStream out /* no symmetry :( */) {
+		scanner = new Scanner(in);
+		this.out = out;
+	}
 
 	@Override
 	public void printLine(String format, Object... params) {
-		System.out.println(String.format(format, (Object[]) params));
+		out.println(String.format(format, params));
 	}
 
 	@Override
@@ -18,19 +26,11 @@ public class UserIOConsole implements UserIO {
 
 	@Override
 	public void printText(String text) {
-		System.out.print(text);
+		out.print(text);
 	}
 
 	@Override
 	public String readInput() {
-		try {
-			// sleep 2-5 seconds to emulate user enter
-			Thread.sleep(2000 + (int) (Math.random() * 3));
-		} catch (Exception ex) {
-			// do nothing
-		}
-
-		printLine(answer);// simulate user input
-		return answer;
+		return scanner.nextLine();
 	}
 }

@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 import ru.yakimov.domain.QuizQuestion;
 
-@Slf4j
+@Service
 public class QuestionGenerator {
-	static final String CSV_SEPARATOR = ",";
+	static final private String CSV_SEPARATOR = ",";
 
 	public Optional<QuizQuestion> generate(String line) {
 		String[] params = line.split(CSV_SEPARATOR);
 		if (params.length < 2) {
-			log.info("not enough data for question, skip line: {}", line);
 			// not enough data to read
 			return Optional.empty();
 		}

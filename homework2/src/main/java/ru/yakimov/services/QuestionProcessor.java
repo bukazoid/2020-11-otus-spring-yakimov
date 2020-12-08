@@ -3,5 +3,9 @@ package ru.yakimov.services;
 import ru.yakimov.domain.QuizQuestion;
 
 public interface QuestionProcessor {
-	boolean processQuestion(QuizQuestion question);
+	
+	void displayFreeAnswerQuestion(QuizQuestion question);
+
+	String displayQuestionWithOptionsAndReturnCorrectOne(QuizQuestion question);
+
 }
