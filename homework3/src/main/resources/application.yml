@@ -1,0 +1,4 @@
+quiz:
+  file: "quiz1"
+  requiredPercent: 60
+  locale: ru_RU
