@@ -9,10 +9,10 @@ import ru.yakimov.props.QuizProps;
 
 @RequiredArgsConstructor
 @Service
-public class QMessagesSimple implements QMessages {
-	final static private Object[] NO_PARAMS = new Object[0];
-	final private QuizProps props;
-	final private MessageSource source;
+public class MsgServiceSimple implements MsgService {
+	private final static Object[] NO_PARAMS = new Object[0];
+	private final QuizProps props;
+	private final MessageSource source;
 
 	@Override
 	public String get(String key) {

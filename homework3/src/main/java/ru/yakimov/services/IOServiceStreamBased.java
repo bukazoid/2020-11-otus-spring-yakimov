@@ -4,12 +4,12 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class UserIOConsole implements UserIO {
+public class IOServiceStreamBased implements IOService {
 
-	final private Scanner scanner;
-	final private PrintStream out;
+	private final Scanner scanner;
+	private final PrintStream out;
 
-	public UserIOConsole(InputStream in, PrintStream out /* no symmetry :( */) {
+	public IOServiceStreamBased(InputStream in, PrintStream out /* no symmetry :( */) {
 		scanner = new Scanner(in);
 		this.out = out;
 	}

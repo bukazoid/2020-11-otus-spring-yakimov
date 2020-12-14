@@ -1,6 +1,6 @@
 package ru.yakimov.services;
 
-public interface UserIO {
+public interface IOService {
 
 	String readInput();
 

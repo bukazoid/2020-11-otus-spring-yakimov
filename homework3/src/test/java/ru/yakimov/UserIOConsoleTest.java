@@ -11,8 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import ru.yakimov.services.UserIO;
-import ru.yakimov.services.UserIOConsole;
+import ru.yakimov.services.IOService;
+import ru.yakimov.services.IOServiceStreamBased;
 
 @DisplayName("UserIOConsole")
 public class UserIOConsoleTest {
@@ -23,7 +23,7 @@ public class UserIOConsoleTest {
 	final String testIn = "test string\n\r";
 	final String testOut = "Hello!";
 
-	UserIO userIO;
+	IOService userIO;
 
 	@BeforeEach
 	public void setUp() throws Exception {
@@ -31,7 +31,7 @@ public class UserIOConsoleTest {
 
 		bos = new ByteArrayOutputStream();
 
-		userIO = new UserIOConsole(bis, new PrintStream(bos));
+		userIO = new IOServiceStreamBased(bis, new PrintStream(bos));
 	}
 
 	@Test

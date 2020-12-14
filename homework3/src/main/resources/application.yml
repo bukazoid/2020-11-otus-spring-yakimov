@@ -1,3 +1,9 @@
+
+spring:
+  messages:
+    basename: i18n.phrases
+    encoding: UTF-8
+    
 quiz:
   file: "quiz1"
   requiredPercent: 60

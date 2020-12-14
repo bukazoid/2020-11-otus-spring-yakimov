@@ -28,7 +28,7 @@ public class QuestionProcessorSimple implements QuestionProcessor {
 
 		List<String> options = new ArrayList<String>(question.getAlternativeAnswers());
 		options.add(question.getAnswer());
-		
+
 		Collections.shuffle(options);
 
 		AtomicInteger num = new AtomicInteger(0);// some int container

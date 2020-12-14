@@ -9,8 +9,4 @@ public interface QuestionProcessor {
 
 	List<QuizAnswer> getShuffledAnswers(QuizQuestion question);
 
-//	void displayFreeAnswerQuestion(QuizQuestion question);
-//
-//	String displayQuestionWithOptionsAndReturnCorrectOne(QuizQuestion question);
-
 }

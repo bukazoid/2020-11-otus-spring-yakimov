@@ -7,14 +7,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class WelcomeMessageService {
-	private final UserIO userIO;
-	private final QMessages messages;
+	private final IOService userIO;
+	private final MsgService messages;
 
 	public void sayHello() {
 		// intro
-		userIO.printLine("#".repeat(20));
-		userIO.printLine(messages.get("welcome"));
-		userIO.printLine("#".repeat(20));
+		String welcome = messages.get("welcome");
+		userIO.printLine("#".repeat(welcome.length()));
+		userIO.printLine(welcome);
+		userIO.printLine("#".repeat(welcome.length()));
 		userIO.printLine();
 	}
 }

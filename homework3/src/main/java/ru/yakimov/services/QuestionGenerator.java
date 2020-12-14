@@ -11,7 +11,7 @@ import ru.yakimov.domain.QuizQuestion;
 
 @Service
 public class QuestionGenerator {
-	static final private String CSV_SEPARATOR = ",";
+	private static final String CSV_SEPARATOR = ",";
 
 	public Optional<QuizQuestion> generate(String line) {
 		String[] params = line.split(CSV_SEPARATOR);

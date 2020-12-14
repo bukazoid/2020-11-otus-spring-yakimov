@@ -10,14 +10,14 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import ru.yakimov.domain.QuizQuestion;
-import ru.yakimov.domain.ReadResourceException;
+import ru.yakimov.domain.LoadQuestionsException;
 import ru.yakimov.props.QuizProps;
 
 @Service
 public class QuizReaderCsv implements QuizReader {
 
-	final private QuizProps props;
-	final private QuestionGenerator quizGenerator;
+	private final QuizProps props;
+	private final QuestionGenerator quizGenerator;
 
 	public QuizReaderCsv(QuestionGenerator quizGenerator, QuizProps props) {
 		this.props = props;
@@ -31,11 +31,11 @@ public class QuizReaderCsv implements QuizReader {
 	}
 
 	@Override
-	public List<QuizQuestion> readQuestions() throws ReadResourceException {
+	public List<QuizQuestion> readQuestions() throws LoadQuestionsException {
 		return readResource(getFilename());
 	}
 
-	private List<QuizQuestion> readResource(String name) throws ReadResourceException {
+	private List<QuizQuestion> readResource(String name) throws LoadQuestionsException {
 		List<QuizQuestion> questions = new ArrayList<>();
 		try (InputStream in = getClass().getClassLoader().getResourceAsStream(name);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
@@ -52,7 +52,7 @@ public class QuizReaderCsv implements QuizReader {
 
 			return questions;
 		} catch (Exception e) {// it could be null pointer here
-			throw new ReadResourceException(name);
+			throw new LoadQuestionsException(name, e);
 		}
 	}
 }

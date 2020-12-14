@@ -3,7 +3,6 @@ package ru.yakimov;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,14 +10,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import ru.yakimov.domain.LoadQuestionsException;
 import ru.yakimov.domain.QuizQuestion;
-import ru.yakimov.domain.ReadResourceException;
 import ru.yakimov.props.QuizProps;
 import ru.yakimov.services.QuizReader;
 
@@ -29,7 +27,7 @@ import ru.yakimov.services.QuizReader;
  *
  */
 @SpringBootTest
-@DisplayName("AppЕest")
+@DisplayName("AppTest")
 public class AppTest {
 
 	AutoCloseable mock2close;
@@ -48,20 +46,15 @@ public class AppTest {
 	QuizReader quizReader;
 
 	@Test
-	public void readQuizTest() throws ReadResourceException {
+	public void readQuizTest() throws LoadQuestionsException {
 		List<QuizQuestion> qqList = quizReader.readQuestions();
-		System.out.println("qqList: " + qqList);
 		assertEquals(1, qqList.size());
 	}
 
+	@EnableConfigurationProperties(QuizProps.class)
 	@Configuration
-	@EnableAutoConfiguration
-	@ComponentScan({ "ru.yakimov.config", "ru.yakimov.services" })
+	@ComponentScan({ "ru.yakimov.config", "ru.yakimov.services", "ru.yakimov.props" })
 	public static class TestContextConfig {
 
-		@Bean
-		QuizProps props() {// WHYYYYYYY. without this bean i have an error
-			return new QuizProps("testquiz", 61, new Locale("en"));
-		}
 	}
 }
