@@ -1,4 +1,4 @@
 quiz:
-  file: "testquiz"
+  baseFilename: "testquiz"
   requiredPercent: 60
   locale: en

@@ -24,15 +24,9 @@ public class QuizReaderCsv implements QuizReader {
 		this.quizGenerator = quizGenerator;
 	}
 
-	private String getFilename() {
-		String baseName = props.getFile();
-		String name = baseName + "_" + props.getLocale() + ".csv";
-		return name;
-	}
-
 	@Override
 	public List<QuizQuestion> readQuestions() throws LoadQuestionsException {
-		return readResource(getFilename());
+		return readResource(props.getLocalizedFilename());
 	}
 
 	private List<QuizQuestion> readResource(String name) throws LoadQuestionsException {

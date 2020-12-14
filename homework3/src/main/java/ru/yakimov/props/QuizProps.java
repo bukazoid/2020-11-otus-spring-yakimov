@@ -13,7 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuizProps {
-	private String file;
+	private String baseFilename;
 	private int requiredPercent;
 	private Locale locale;
+
+	public String getLocalizedFilename() {
+		return baseFilename + "_" + locale + ".csv";
+	}
 }
