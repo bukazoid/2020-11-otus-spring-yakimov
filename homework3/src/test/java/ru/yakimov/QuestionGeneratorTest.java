@@ -15,7 +15,7 @@ import ru.yakimov.services.QuestionGenerator;
 
 @DisplayName("QuestionGenerator test")
 public class QuestionGeneratorTest {
-	QuestionGenerator qGenerator;
+	private QuestionGenerator qGenerator;
 
 	@BeforeEach
 	void init() {
