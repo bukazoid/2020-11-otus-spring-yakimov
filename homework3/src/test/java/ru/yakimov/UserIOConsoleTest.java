@@ -16,14 +16,14 @@ import ru.yakimov.services.IOServiceStreamBased;
 
 @DisplayName("UserIOConsole")
 public class UserIOConsoleTest {
-	ByteArrayInputStream bis;
+	private ByteArrayInputStream bis;
 
-	ByteArrayOutputStream bos;
+	private ByteArrayOutputStream bos;
 
-	final String testIn = "test string\n\r";
-	final String testOut = "Hello!";
+	private final String testIn = "test string\n\r";
+	private final String testOut = "Hello!";
 
-	IOService userIO;
+	private IOService userIO;
 
 	@BeforeEach
 	public void setUp() throws Exception {
