@@ -1,0 +1,4 @@
+quiz:
+  baseFilename: "testquiz"
+  requiredPercent: 60
+  locale: en
