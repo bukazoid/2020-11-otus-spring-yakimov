@@ -1,0 +1,10 @@
+
+spring:
+  messages:
+    basename: i18n.phrases
+    encoding: UTF-8
+    
+quiz:
+  baseFilename: "quiz1"
+  requiredPercent: 60
+  locale: ru_RU
