@@ -1,4 +1,4 @@
-package ru.yakimov;
+package ru.yakimov.shell;
 
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
@@ -15,7 +15,7 @@ import ru.yakimov.services.Quiz;
 @RequiredArgsConstructor
 public class AppShell {
 	@NonNull
-	private Quiz quiz;
+	private final Quiz quiz;
 
 	private String userName;
 

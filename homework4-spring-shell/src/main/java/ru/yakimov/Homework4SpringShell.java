@@ -8,7 +8,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import ru.yakimov.domain.LoadQuestionsException;
 import ru.yakimov.props.QuizProps;
-import ru.yakimov.services.Quiz;
 
 @EnableConfigurationProperties(QuizProps.class)
 @SpringBootApplication
