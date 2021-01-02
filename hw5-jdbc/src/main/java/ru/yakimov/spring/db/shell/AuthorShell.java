@@ -18,7 +18,7 @@ public class AuthorShell {
 
 	private final AuthorService authorService;
 
-	@ShellMethod(group = "author", value = "List of authors", key = { "al", "alist", "authors", "authorList" })
+	@ShellMethod(value = "List of authors", key = { "al", "alist", "authors", "authorList" })
 	public String authorList() {
 		List<Author> authors = authorService.readAll();
 
