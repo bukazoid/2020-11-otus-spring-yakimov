@@ -59,6 +59,7 @@ public class BookDaoJdbc implements BookDao {
 
 	@Override
 	public List<Book> readAll() {
+		// yes, not ideal, but not N requests
 		Map<Long, Genre> genres = genreDao.readAll().stream()
 				.collect(Collectors.toMap(Genre::getId, Function.identity()));
 

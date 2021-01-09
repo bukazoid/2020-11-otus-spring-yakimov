@@ -5,4 +5,4 @@ values (1, 'Drama'),
        (2, 'Science Fiction'),
        (3, 'Fantasy'),
        (4, 'Detective'),
-       (5, 'History');
+       (5, 'Historical');
