@@ -12,6 +12,7 @@ import ru.yakimov.spring.db.domain.Book;
 import ru.yakimov.spring.db.service.AuthorService;
 import ru.yakimov.spring.db.service.BookService;
 import ru.yakimov.spring.db.service.GenreService;
+import ru.yakimov.spring.db.service.ObjectToStringTransformer;
 
 @ShellCommandGroup("book")
 @ShellComponent
@@ -21,12 +22,12 @@ public class BookShell {
 	private final BookService bookService;
 	private final AuthorService authorService;
 	private final GenreService genreService;
+	private final ObjectToStringTransformer transfromer;
 
 	@ShellMethod(value = "List of books", key = { "bl", "blist", "books", "bookList" })
-	public String authorList() {
-		List<Book> authors = bookService.readAll();
-
-		return authors.stream().map(this::toLine).reduce((a1, a2) -> a1 + "\n" + a2).orElse("");
+	public String bookList() {
+		List<Book> books = bookService.readAll();
+		return transfromer.booksToLine(books);
 	}
 
 	@ShellMethod(value = "Add book", key = { "ba", "badd", "bookAdd" })
@@ -34,19 +35,15 @@ public class BookShell {
 			@ShellOption("book's genre") Long genre) {
 
 		Book book2create = new Book(null, name, authorService.read(author), genreService.read(genre));
-
 		Book result = bookService.create(book2create);
-		return "created book: \n" + toLine(result);
+
+		return "created book: \n" + transfromer.toLine(result);
 	}
 
 	@ShellMethod(value = "Read book", key = { "br", "bread", "book", "bookRead" })
-	public String authorAdd(@ShellOption Long id) {
+	public String bookRead(@ShellOption Long id) {
 		Book result = bookService.read(id);
-		return "read book: \n" + toLine(result);
+		return "read book: \n" + transfromer.toLine(result);
 	}
 
-	private String toLine(Book book) {
-		return "\t" + book.getId() + "\t" + book.getTitle() + "\t" + book.getAuthor().getName() + "\t"
-				+ book.getGenre().getName();
-	}
 }

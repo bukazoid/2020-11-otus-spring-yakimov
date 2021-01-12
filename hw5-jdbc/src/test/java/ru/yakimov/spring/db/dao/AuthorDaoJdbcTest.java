@@ -45,14 +45,17 @@ public class AuthorDaoJdbcTest {
 
 	}
 
+	final static private String AUTHOR_TO_ADD = "Student";
+	final static private long NEXT_AUTHOR_ID = 3;// can be changed, also could be another id generator
+
 	@Test
 	@DisplayName("should add Student")
 	void shouldInsert() {
-		dao.create(new Author(null, "Student"));
+		dao.create(new Author(null, AUTHOR_TO_ADD));
 
 		List<Author> authors = dao.readAll();
 
-		assertThat(authors).hasSize(3).contains(new Author(3L/* correct id, could be another policy */, "Student"));
+		assertThat(authors).hasSize(3).contains(new Author(NEXT_AUTHOR_ID, AUTHOR_TO_ADD));
 
 	}
 }

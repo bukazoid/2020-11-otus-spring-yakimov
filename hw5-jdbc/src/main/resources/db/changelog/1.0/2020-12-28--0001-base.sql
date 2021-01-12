@@ -1,23 +1,25 @@
 --liquibase formatted sql
 
 --changeset yakimov:2020-12-28--0001-base
-create table authors
+CREATE TABLE authors
 (
-   author_id integer auto_increment,
-   name varchar,
-   primary key (author_id)
+   author_id BIGINT auto_increment,
+   name VARCHAR,
+   PRIMARY KEY (author_id)
 );
-create table genres
+CREATE TABLE genres
 (
-   genre_id integer auto_increment,
-   name varchar,
-   primary key (genre_id)
+   genre_id BIGINT auto_increment,
+   name VARCHAR,
+   PRIMARY KEY (genre_id)
 );
-create table books
+CREATE TABLE books
 (
-   book_id integer auto_increment,
-   title varchar,
-   author_id integer,
-   genre_id integer,
-   primary key (book_id)
+   book_id BIGINT auto_increment,
+   title VARCHAR,
+   author_id BIGINT,
+   genre_id BIGINT,
+   PRIMARY KEY (book_id),
+   FOREIGN KEY (author_id) REFERENCES authors(author_id),
+   FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
 );

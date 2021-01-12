@@ -15,10 +15,11 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import ru.yakimov.spring.db.domain.Author;
 import ru.yakimov.spring.db.domain.Book;
-import ru.yakimov.spring.db.domain.BookShort;
 import ru.yakimov.spring.db.domain.Genre;
 
 @Repository
@@ -36,7 +37,7 @@ public class BookDaoJdbc implements BookDao {
 	@Override
 	public Book read(Long id) {
 		return jdbc.queryForObject(
-				"SELECT book_id, title, author_id, genre_id, a.name, g.name FROM books b JOIN authors a USING(author_id) JOIN genres g USING(genre_id)  JOIN WHERE book_id = :id",
+				"SELECT book_id, title, b.author_id, b.genre_id, a.name AS aName, g.name AS gName FROM books b JOIN authors a ON a.author_id=b.author_id JOIN genres g ON b.genre_id=g.genre_id WHERE book_id = :id",
 				Map.of("id", id), new BookMapper());
 	}
 
@@ -84,10 +85,10 @@ public class BookDaoJdbc implements BookDao {
 			String title = resultSet.getString("title");
 
 			long author = resultSet.getLong("author_id");
-			String authorName = resultSet.getString("a.name");
+			String authorName = resultSet.getString("aName");
 
 			long genre = resultSet.getLong("genre_id");
-			String genreName = resultSet.getString("g.name");
+			String genreName = resultSet.getString("gName");
 
 			return new Book(id, title, new Author(author, authorName), new Genre(genre, genreName));
 		}
@@ -111,4 +112,17 @@ public class BookDaoJdbc implements BookDao {
 
 	}
 
+	/**
+	 * need this class only here
+	 */
+	@Data
+	@AllArgsConstructor
+	private static class BookShort {
+		private final Long id;
+
+		private final String title;
+
+		private final Long author;
+		private final Long genre;
+	}
 }

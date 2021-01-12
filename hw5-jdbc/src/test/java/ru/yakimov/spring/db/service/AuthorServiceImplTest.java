@@ -28,7 +28,7 @@ public class AuthorServiceImplTest {
 		authorService = new AuthorServiceImpl(authorDao);
 	}
 
-	@DisplayName("should dreturn 17")
+	@DisplayName("should return 17")
 	@Test
 	void shouldReturnCount() {
 		long expected = 17L;
