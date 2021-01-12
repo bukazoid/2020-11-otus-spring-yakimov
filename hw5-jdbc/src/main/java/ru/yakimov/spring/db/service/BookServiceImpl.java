@@ -34,4 +34,9 @@ public class BookServiceImpl implements BookService {
 		return dao.readAll();
 	}
 
+	@Override
+	public void delete(Long id) {
+		dao.delete(id);
+	}
+
 }

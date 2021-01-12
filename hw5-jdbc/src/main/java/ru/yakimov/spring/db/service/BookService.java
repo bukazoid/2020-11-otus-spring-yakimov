@@ -8,6 +8,8 @@ public interface BookService {
 	long count();
 
 	Book read(Long id);
+	
+	void delete(Long id);
 
 	Book create(Book book);
 

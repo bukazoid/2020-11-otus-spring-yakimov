@@ -46,4 +46,10 @@ public class BookShell {
 		return "read book: \n" + transfromer.toLine(result);
 	}
 
+	@ShellMethod(value = "Delete book", key = { "bd", "bdell", "bookDelete" })
+	public String bookdelete(@ShellOption Long id) {
+		bookService.delete(id);
+		return "deleted book: " + id;
+	}
+
 }
