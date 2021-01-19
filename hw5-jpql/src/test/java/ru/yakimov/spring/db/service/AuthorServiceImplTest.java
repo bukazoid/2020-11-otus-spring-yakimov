@@ -11,15 +11,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import ru.yakimov.spring.db.dao.AuthorDao;
 import ru.yakimov.spring.db.domain.Author;
+import ru.yakimov.spring.db.repositories.AuthorRepository;
 
 @DisplayName("AuthorServiceImpl")
 @ExtendWith(MockitoExtension.class)
 public class AuthorServiceImplTest {
 
 	@Mock
-	private AuthorDao authorDao;
+	private AuthorRepository authorDao;
 
 	private AuthorService authorService;
 

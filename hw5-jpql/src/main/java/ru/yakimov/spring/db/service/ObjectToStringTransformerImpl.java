@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ru.yakimov.spring.db.domain.Author;
 import ru.yakimov.spring.db.domain.Book;
+import ru.yakimov.spring.db.domain.BookComment;
 import ru.yakimov.spring.db.domain.Genre;
 
 @Service
@@ -24,8 +25,8 @@ public class ObjectToStringTransformerImpl implements ObjectToStringTransformer 
 
 	@Override
 	public String toLine(Book book) {
-		return "\t" + book.getId() + "\t" + book.getTitle() + "\t" + book.getAuthor().getName() + "\t"
-				+ book.getGenre().getName();
+		String genreList = book.getGenres().stream().map(Genre::getName).collect(Collectors.joining(","));
+		return "\t" + book.getId() + "\t" + book.getTitle() + "\t" + book.getAuthor().getName() + "\t" + genreList;
 	}
 
 	@Override
@@ -41,6 +42,16 @@ public class ObjectToStringTransformerImpl implements ObjectToStringTransformer 
 	@Override
 	public String booksToLine(List<Book> books) {
 		return books.stream().map(this::toLine).collect(Collectors.joining("\n"));
+	}
+
+	@Override
+	public String toLine(BookComment comment) {
+		return "\t" + comment.getId() + ": " + comment.getBook().getTitle() + " - " + comment.getText();
+	}
+
+	@Override
+	public String commentsToLine(List<BookComment> comments) {
+		return comments.stream().map(this::toLine).collect(Collectors.joining("\n"));
 	}
 
 }

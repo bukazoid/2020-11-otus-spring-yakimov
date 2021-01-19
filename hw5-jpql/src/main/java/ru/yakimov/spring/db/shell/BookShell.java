@@ -1,5 +1,6 @@
 package ru.yakimov.spring.db.shell;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.shell.standard.ShellCommandGroup;
@@ -31,10 +32,10 @@ public class BookShell {
 	}
 
 	@ShellMethod(value = "Add book", key = { "ba", "badd", "bookAdd" })
-	public String bookAdd(@ShellOption String name, @ShellOption("id of author who wrote the book") Long author,
+	public String bookAdd(@ShellOption String title, @ShellOption("id of author who wrote the book") Long author,
 			@ShellOption("book's genre") Long genre) {
 
-		Book book2create = new Book(null, name, authorService.read(author), genreService.read(genre));
+		Book book2create = new Book(title, authorService.read(author), Arrays.asList(genreService.read(genre)));
 		Book result = bookService.create(book2create);
 
 		return "created book: \n" + transfromer.toLine(result);

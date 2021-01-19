@@ -10,35 +10,37 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
 import ru.yakimov.spring.db.domain.Author;
+import ru.yakimov.spring.db.repositories.AuthorRepository;
+import ru.yakimov.spring.db.repositories.AuthorRepositoryJpa;
 
-@JdbcTest
-@Import(AuthorDaoJdbc.class)
+@DataJpaTest
+@Import(AuthorRepositoryJpa.class)
 @DisplayName("AuthorDaoTest")
-public class AuthorDaoJdbcTest {
+public class AuthorRepositoryTest {
 	@Autowired
-	private AuthorDao dao;
+	private AuthorRepository repo;
 
 	@DisplayName("should return 2")
 	@Test
 	public void shouldReturnCount() {
-		assertEquals(2, dao.count());
+		assertEquals(2, repo.count());
 	}
 
 	@DisplayName("should read Homer")
 	@Test
 	public void shouldReturnHomer() {
-		String name = Optional.ofNullable(dao.read(1L)).map(Author::getName).orElse(null);
+		String name = Optional.ofNullable(repo.read(1L)).map(Author::getName).orElse(null);
 		assertEquals("Homer", name);
 	}
 
 	@DisplayName("should read all")
 	@Test
 	public void shouldReadAll() {
-		List<Author> authors = dao.readAll();
+		List<Author> authors = repo.readAll();
 
 		assertThat(authors).hasSize(2).containsExactlyInAnyOrderElementsOf(
 				Arrays.asList(new Author(1L, "Homer"), new Author(2L, "Shakespeare")));
@@ -51,9 +53,9 @@ public class AuthorDaoJdbcTest {
 	@Test
 	@DisplayName("should add Student")
 	void shouldInsert() {
-		dao.create(new Author(null, AUTHOR_TO_ADD));
+		repo.create(new Author(null, AUTHOR_TO_ADD));
 
-		List<Author> authors = dao.readAll();
+		List<Author> authors = repo.readAll();
 
 		assertThat(authors).hasSize(3).contains(new Author(NEXT_AUTHOR_ID, AUTHOR_TO_ADD));
 

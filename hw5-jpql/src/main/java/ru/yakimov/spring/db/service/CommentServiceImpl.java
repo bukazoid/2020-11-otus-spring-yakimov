@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import ru.yakimov.spring.db.domain.Book;
-import ru.yakimov.spring.db.repositories.BookRepository;
+import ru.yakimov.spring.db.domain.BookComment;
+import ru.yakimov.spring.db.repositories.CommentRepository;
 
 @Service
 @RequiredArgsConstructor
-public class BookServiceImpl implements BookService {
+public class CommentServiceImpl implements CommentService {
 
-	private final BookRepository dao;
+	private final CommentRepository dao;
 
 	@Transactional(readOnly = true)
 	@Override
@@ -23,19 +23,19 @@ public class BookServiceImpl implements BookService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Book read(Long id) {
+	public BookComment read(Long id) {
 		return dao.read(id);
 	}
 
 	@Transactional
 	@Override
-	public Book create(Book book) {
+	public BookComment create(BookComment book) {
 		return dao.create(book);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Book> readAll() {
+	public List<BookComment> readAll() {
 		return dao.readAll();
 	}
 
@@ -43,6 +43,12 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void delete(Long id) {
 		dao.delete(id);
+	}
+
+	@Transactional
+	@Override
+	public void update(BookComment comment) {
+		dao.update(comment);
 	}
 
 }
