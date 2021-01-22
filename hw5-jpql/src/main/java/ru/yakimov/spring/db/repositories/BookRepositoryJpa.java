@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.jline.utils.Log;
 import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
@@ -30,12 +30,9 @@ public class BookRepositoryJpa implements BookRepository {
 
 	@Override
 	public void delete(Long id) {
-		Book book = em.find(Book.class, id);
-		if (book == null) {
-			Log.info("book with id: {} is not found", id);
-			return;
-		}
-		em.remove(book);
+		Query q = em.createQuery("DELETE FROM Book b WHERE b.id=:id");
+		q.setParameter("id", id);
+		q.executeUpdate();
 	}
 
 	@Override
@@ -46,7 +43,10 @@ public class BookRepositoryJpa implements BookRepository {
 
 	@Override
 	public List<Book> readAll() {
-		TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b", Book.class);
+		TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b JOIN FETCH b.author", Book.class);// as an
+																										// alternative
+																										// see
+																										// javax.persistence.EntityGraph
 		return query.getResultList();
 	}
 

@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,18 @@ public class BookRepositoryTest {
 		assertEquals("Illiad", title);
 	}
 
+	private final static int EXPECTED_QUERIES_COUNT = 2;// one for books + authors and one for genres
+
 	@DisplayName("should read all")
 	@Test
 	public void shouldReadAll() {
-		List<Book> authors = repo.readAll();
+		SessionFactory sessionFactory = em.getEntityManager().getEntityManagerFactory().unwrap(SessionFactory.class);
+		sessionFactory.getStatistics().setStatisticsEnabled(true);
 
+		List<Book> authors = repo.readAll();
 		assertThat(authors).hasSize(2);
+
+		assertThat(sessionFactory.getStatistics().getPrepareStatementCount()).isEqualTo(EXPECTED_QUERIES_COUNT);
 	}
 
 	final static private String BOOK_TO_ADD = "Student Diary";
@@ -76,5 +83,14 @@ public class BookRepositoryTest {
 		assertThat(book).isNotNull();
 		assertThat(book.getGenres()).contains(genre);
 
+	}
+
+	@Test
+	@DisplayName("should delete")
+	void shouldDeleteBooks() {
+		repo.delete(1L);
+		repo.delete(2L);
+
+		assertThat(repo.readAll().size()).isEqualTo(0);
 	}
 }

@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -41,9 +40,6 @@ public class Book {
 	@JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Genre> genres;
-
-	@OneToMany(targetEntity = BookComment.class, mappedBy = "book")
-	private List<BookComment> comments;
 
 	public Book(String title, Author author, List<Genre> genres) {
 		this(null, title, author, genres);
