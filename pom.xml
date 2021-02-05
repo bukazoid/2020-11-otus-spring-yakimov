@@ -15,5 +15,7 @@
         <module>homework2</module>
         <module>homework3</module>
         <module>homework4-spring-shell</module>
+        <module>hw5-jdbc</module>
+        <module>hw6-jpql</module>
     </modules>
 </project>
