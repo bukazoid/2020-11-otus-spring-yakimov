@@ -24,25 +24,25 @@ public class BookServiceImpl implements BookService {
 	@Transactional(readOnly = true)
 	@Override
 	public Book read(Long id) {
-		return dao.read(id);
+		return dao.findById(id).get();
 	}
 
 	@Transactional
 	@Override
 	public Book create(Book book) {
-		return dao.create(book);
+		return dao.save(book);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<Book> readAll() {
-		return dao.readAll();
+		return dao.findAll();
 	}
 
 	@Transactional
 	@Override
 	public void delete(Long id) {
-		dao.delete(id);
+		dao.deleteById(id);
 	}
 
 }

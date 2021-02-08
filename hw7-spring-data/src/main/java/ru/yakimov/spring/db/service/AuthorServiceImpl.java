@@ -24,19 +24,19 @@ public class AuthorServiceImpl implements AuthorService {
 	@Transactional(readOnly = true)
 	@Override
 	public Author read(Long id) {
-		return repo.read(id);
+		return repo.findById(id).get();
 	}
 
 	@Transactional
 	@Override
 	public Author create(Author author) {
-		return repo.create(author);
+		return repo.save(author);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<Author> readAll() {
-		return repo.readAll();
+		return repo.findAll();
 	}
 
 }

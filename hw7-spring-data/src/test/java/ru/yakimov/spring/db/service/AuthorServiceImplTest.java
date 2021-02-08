@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,20 +21,20 @@ import ru.yakimov.spring.db.repositories.AuthorRepository;
 public class AuthorServiceImplTest {
 
 	@Mock
-	private AuthorRepository authorDao;
+	private AuthorRepository authorRepo;
 
 	private AuthorService authorService;
 
 	@BeforeEach
 	private void init() {
-		authorService = new AuthorServiceImpl(authorDao);
+		authorService = new AuthorServiceImpl(authorRepo);
 	}
 
 	@DisplayName("should return 17")
 	@Test
 	void shouldReturnCount() {
 		long expected = 17L;
-		when(authorDao.count()).thenReturn(expected);
+		when(authorRepo.count()).thenReturn(expected);
 
 		long count = authorService.count();
 		assertEquals(expected, count);
@@ -42,9 +44,9 @@ public class AuthorServiceImplTest {
 	@DisplayName("should return me")
 	void shouldGetById() {
 		Author expected = new Author(11L, "Me");
-		when(authorDao.read(eq(null))).thenReturn(expected);// why not?
+		when(authorRepo.findById(eq(11L))).thenReturn(Optional.of(expected));
 
-		Author author = authorService.read(null);
+		Author author = authorService.read(11L);
 		assertEquals(expected, author);
 	}
 }

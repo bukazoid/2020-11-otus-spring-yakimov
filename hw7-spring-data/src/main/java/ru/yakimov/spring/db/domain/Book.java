@@ -45,6 +45,15 @@ public class Book {
 		this(null, title, author, genres);
 	}
 
+	/**
+	 * to create stub for tests
+	 * 
+	 * @param id
+	 */
+	public Book(Long id) {
+		this(id, null, null, null);
+	}
+
 	public Book(Long id, String title, Author author, List<Genre> genres) {
 		this.id = id;
 		this.title = title;

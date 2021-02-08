@@ -28,7 +28,7 @@ CREATE TABLE book_genre
 (
 	book_id BIGINT,
 	genre_id BIGINT,
-	FOREIGN KEY (book_id) REFERENCES books(book_id),
-   	FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+	FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE ,
+   	FOREIGN KEY (genre_id) REFERENCES genres(genre_id)ON DELETE CASCADE 
 );
 

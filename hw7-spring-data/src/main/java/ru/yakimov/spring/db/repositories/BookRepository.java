@@ -2,17 +2,17 @@ package ru.yakimov.spring.db.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import ru.yakimov.spring.db.domain.Book;
 
-public interface BookRepository {
+public interface BookRepository extends JpaRepository<Book, Long> {
 
+	@Query("SELECT COUNT(b) FROM Book b")
 	long count();
 
-	Book read(Long id);
-
-	Book create(Book book);
-
-	List<Book> readAll();
-
-	void delete(Long id);
+	@EntityGraph(attributePaths = { "author" }) // N+1 problem
+	List<Book> findAll();
 }

@@ -24,19 +24,19 @@ public class GenreServiceImpl implements GenreService {
 	@Transactional(readOnly = true)
 	@Override
 	public Genre read(Long id) {
-		return dao.read(id);
+		return dao.findById(id).get();
 	}
 
 	@Transactional
 	@Override
 	public Genre create(Genre author) {
-		return dao.create(author);
+		return dao.save(author);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<Genre> readAll() {
-		return dao.readAll();
+		return dao.findAll();
 	}
 
 }

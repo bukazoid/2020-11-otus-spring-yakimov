@@ -24,31 +24,36 @@ public class CommentServiceImpl implements CommentService {
 	@Transactional(readOnly = true)
 	@Override
 	public BookComment read(Long id) {
-		return dao.read(id);
+		return dao.findById(id).orElse(null);
 	}
 
 	@Transactional
 	@Override
 	public BookComment create(BookComment book) {
-		return dao.create(book);
+		return dao.save(book);
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<BookComment> readAll() {
-		return dao.readAll();
+		return dao.findAll();
 	}
 
 	@Transactional
 	@Override
 	public void delete(Long id) {
-		dao.delete(id);
+		dao.deleteById(id);
 	}
 
 	@Transactional
 	@Override
 	public void update(BookComment comment) {
-		dao.update(comment);
+		dao.save(comment);
+	}
+
+	@Override
+	public List<BookComment> readByBook(long bookId) {
+		return dao.findByBookId(bookId);
 	}
 
 }

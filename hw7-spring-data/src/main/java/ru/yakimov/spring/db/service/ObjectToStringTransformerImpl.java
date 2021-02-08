@@ -46,7 +46,7 @@ public class ObjectToStringTransformerImpl implements ObjectToStringTransformer 
 
 	@Override
 	public String toLine(BookComment comment) {
-		return "\t" + comment.getId() + ": " + comment.getBook().getTitle() + " - " + comment.getText();
+		return "\t" + comment.getId() + ": " + comment.getText();
 	}
 
 	@Override

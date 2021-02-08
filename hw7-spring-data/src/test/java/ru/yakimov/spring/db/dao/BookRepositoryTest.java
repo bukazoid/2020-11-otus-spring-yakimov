@@ -5,29 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.Import;
 
 import ru.yakimov.spring.db.domain.Author;
 import ru.yakimov.spring.db.domain.Book;
 import ru.yakimov.spring.db.domain.Genre;
-import ru.yakimov.spring.db.repositories.AuthorRepositoryJpa;
-import ru.yakimov.spring.db.repositories.BookRepositoryJpa;
-import ru.yakimov.spring.db.repositories.GenreRepositoryJpa;
+import ru.yakimov.spring.db.repositories.BookRepository;
 
 @DataJpaTest
-@Import({ BookRepositoryJpa.class, AuthorRepositoryJpa.class, GenreRepositoryJpa.class })
 @DisplayName("BookRepositoryTest")
 public class BookRepositoryTest {
 	@Autowired
-	private BookRepositoryJpa repo;
+	private BookRepository repo;
 
 	@Autowired
 	private TestEntityManager em;
@@ -41,22 +35,16 @@ public class BookRepositoryTest {
 	@DisplayName("should return Illiad")
 	@Test
 	public void shouldReturnHomer() {
-		String title = Optional.ofNullable(repo.read(1L)).map(Book::getTitle).orElse(null);
+		String title = repo.findById(1L).map(Book::getTitle).orElse(null);
 		assertEquals("Illiad", title);
 	}
-
-	private final static int EXPECTED_QUERIES_COUNT = 2;// one for books + authors and one for genres
 
 	@DisplayName("should read all")
 	@Test
 	public void shouldReadAll() {
-		SessionFactory sessionFactory = em.getEntityManager().getEntityManagerFactory().unwrap(SessionFactory.class);
-		sessionFactory.getStatistics().setStatisticsEnabled(true);
 
-		List<Book> authors = repo.readAll();
-		assertThat(authors).hasSize(2);
-
-		assertThat(sessionFactory.getStatistics().getPrepareStatementCount()).isEqualTo(EXPECTED_QUERIES_COUNT);
+		List<Book> books = repo.findAll();
+		assertThat(books).hasSize(2);
 	}
 
 	final static private String BOOK_TO_ADD = "Student Diary";
@@ -72,9 +60,9 @@ public class BookRepositoryTest {
 		Genre genre = em.find(Genre.class, 1L);
 
 		List<Genre> genres = Arrays.asList(genre);
-		repo.create(new Book(BOOK_TO_ADD, author, genres));
+		repo.save(new Book(BOOK_TO_ADD, author, genres));
 
-		List<Book> books = repo.readAll();
+		List<Book> books = repo.findAll();
 
 		assertThat(books).hasSize((int) exprectedCount);
 
@@ -88,9 +76,9 @@ public class BookRepositoryTest {
 	@Test
 	@DisplayName("should delete")
 	void shouldDeleteBooks() {
-		repo.delete(1L);
-		repo.delete(2L);
+		repo.deleteById(1L);
+		repo.deleteById(2L);
 
-		assertThat(repo.readAll().size()).isEqualTo(0);
+		assertThat(repo.findAll().size()).isEqualTo(0);
 	}
 }

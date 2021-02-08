@@ -2,11 +2,9 @@ package ru.yakimov.spring.db.service;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import ru.yakimov.spring.db.domain.BookComment;
 
-public interface CommentService extends JpaRepository<BookComment, Long> {
+public interface CommentService {
 	long count();
 
 	BookComment read(Long id);
@@ -19,5 +17,5 @@ public interface CommentService extends JpaRepository<BookComment, Long> {
 
 	List<BookComment> readAll();
 
-	List<BookComment> readByBook(Long bookId);
+	List<BookComment> readByBook(long bookId);
 }
