@@ -13,6 +13,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 	@Query("SELECT COUNT(b) FROM Book b")
 	long count();
 
-	@EntityGraph(attributePaths = { "author" }) // N+1 problem
 	List<Book> findAll();
 }
