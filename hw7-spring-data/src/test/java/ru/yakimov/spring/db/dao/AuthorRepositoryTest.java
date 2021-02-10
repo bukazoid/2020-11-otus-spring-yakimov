@@ -10,14 +10,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.MethodMode;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.yakimov.spring.db.domain.Author;
 import ru.yakimov.spring.db.repositories.AuthorRepository;
 
+@Slf4j
 @DataJpaTest
 @DisplayName("AuthorDaoTest")
+// @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD) overkill but maybe helpful, should be careful with tests changing context
 public class AuthorRepositoryTest {
 	@Autowired
 	private AuthorRepository repo;
@@ -46,9 +47,8 @@ public class AuthorRepositoryTest {
 	}
 
 	final static private String AUTHOR_TO_ADD = "Student";
-	final static private long NEXT_AUTHOR_ID = 3;// can be changed, also could be another id generator
 
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+//	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)  can be helpful
 	@Test
 	@DisplayName("should add Student")
 	void shouldInsert() {
@@ -56,7 +56,13 @@ public class AuthorRepositoryTest {
 
 		List<Author> authors = repo.findAll();
 
-		assertThat(authors).hasSize(3).contains(new Author(NEXT_AUTHOR_ID, AUTHOR_TO_ADD));
+		log.info("authors: {}", authors);
+
+//		final static private long NEXT_AUTHOR_ID = 3;// can be changed, also could be another id generator
+//		assertThat(authors).hasSize(3).contains(new Author(NEXT_AUTHOR_ID, AUTHOR_TO_ADD));// btw: better to not check
+//																							// id
+
+		assertThat(authors).hasSize(3).filteredOn(a -> a.getName().equals(AUTHOR_TO_ADD)).hasSize(1);
 
 	}
 }
