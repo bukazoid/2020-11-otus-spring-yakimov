@@ -3,6 +3,7 @@ package ru.yakimov.spring.db.shell;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jline.utils.Log;
 import org.springframework.shell.standard.ShellCommandGroup;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -28,6 +29,7 @@ public class BookShell {
 	@ShellMethod(value = "List of books", key = { "bl", "blist", "books", "bookList" })
 	public String bookList() {
 		List<Book> books = bookService.readAll();
+		Log.info("books: {}", books);
 		return transfromer.booksToLine(books);
 	}
 

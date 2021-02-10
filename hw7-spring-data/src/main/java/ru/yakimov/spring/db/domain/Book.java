@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -20,6 +22,10 @@ import org.hibernate.annotations.FetchMode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//@NamedEntityGraph(name = "book-author", attributeNodes = { @NamedAttributeNode("author"),
+//		@NamedAttributeNode("genres") }); // also working but i don't like it, to get books, genres and authors in one request? - nothing good can go out from this
+
+@NamedEntityGraph(name = "book-author", attributeNodes = { @NamedAttributeNode("author") })
 @Entity
 @Table(name = "books")
 @Data
