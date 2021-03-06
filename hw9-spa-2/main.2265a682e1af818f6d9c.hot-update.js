@@ -1,0 +1,15 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/main/js/common/GridProperty.js":
+/*!********************************************!*\
+  !*** ./src/main/js/common/GridProperty.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/src/main/js/common/GridProperty.js: Missing semicolon (5:33)\n\n\u001b[0m \u001b[90m 3 |\u001b[39m       \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mid \u001b[33m=\u001b[39m id\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 4 |\u001b[39m       \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mlabel \u001b[33m=\u001b[39m label\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m       \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mmultiline \u001b[33m=\u001b[39m \u001b[33m!\u001b[39mmultiline\u001b[33m:\u001b[39m\u001b[36mfalse\u001b[39m\u001b[33m:\u001b[39mmultiline\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   |\u001b[39m                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 |\u001b[39m     }\u001b[0m\n\u001b[0m \u001b[90m 7 |\u001b[39m   }\u001b[0m\n\u001b[0m \u001b[90m 8 |\u001b[39m   \u001b[0m\n    at Object._raise (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:776:17)\n    at Object.raiseWithData (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:769:17)\n    at Object.raise (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:737:17)\n    at Object.semicolon (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:9650:10)\n    at Object.parseExpressionStatement (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:12722:10)\n    at Object.parseStatementContent (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:12320:19)\n    at Object.parseStatement (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:12184:17)\n    at Object.parseBlockOrModuleBlockBody (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:12764:25)\n    at Object.parseBlockBody (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:12755:10)\n    at Object.parseBlock (/home/frozen/git/2020-11-otus-spring-yakimov/hw9-spa-2/node_modules/@babel/parser/lib/index.js:12739:10)");
+
+/***/ })
+
+})
+//# sourceMappingURL=main.2265a682e1af818f6d9c.hot-update.js.map

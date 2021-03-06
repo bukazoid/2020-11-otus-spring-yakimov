@@ -1,0 +1,5 @@
+ru/yakimov/spring/mvc/dao/BookRepositoryTest.class
+ru/yakimov/spring/mvc/dao/CommentRepositoryTest.class
+ru/yakimov/spring/mvc/dao/GenreRepositoryTest.class
+ru/yakimov/spring/mvc/dao/AuthorRepositoryTest.class
+ru/yakimov/spring/mvc/service/AuthorServiceImplTest.class
