@@ -38,5 +38,9 @@ public class GenreServiceImpl implements GenreService {
 	public List<Genre> readAll() {
 		return dao.findAll();
 	}
-
+	
+	@Override
+	public Genre update(Genre genre) {
+		return dao.save(genre);
+	}
 }

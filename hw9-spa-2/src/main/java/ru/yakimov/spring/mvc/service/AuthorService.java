@@ -9,9 +9,10 @@ public interface AuthorService {
 	long count();
 
 	Author read(Long id);
-	
+
 	Author create(Author author);
 
 	List<Author> readAll();
 
+	Author update(Author author);
 }

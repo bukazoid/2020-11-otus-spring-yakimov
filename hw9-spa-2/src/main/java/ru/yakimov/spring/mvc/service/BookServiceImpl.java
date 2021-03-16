@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.yakimov.spring.mvc.domain.Book;
 import ru.yakimov.spring.mvc.repositories.BookRepository;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
@@ -47,6 +49,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book update(Book book) {
+		log.info("book to update: {}", book);
 		return dao.save(book);
 	}
 

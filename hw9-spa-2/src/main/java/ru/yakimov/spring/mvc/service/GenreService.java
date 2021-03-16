@@ -10,8 +10,10 @@ public interface GenreService {
 
 	Genre read(Long id);
 
-	Genre create(Genre author);
+	Genre create(Genre genre);
 
 	List<Genre> readAll();
+
+	Genre update(Genre genre);
 
 }

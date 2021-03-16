@@ -39,4 +39,9 @@ public class AuthorServiceImpl implements AuthorService {
 		return repo.findAll();
 	}
 
+	@Override
+	public Author update(Author author) {
+		return repo.save(author);
+	}
+
 }
