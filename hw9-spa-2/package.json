@@ -40,7 +40,7 @@
   },
   "scripts": {
     "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --mode development --open --hot --output ./target/classes/static/built/bundle.js",
     "build": "webpack --mode production"
   },
   "devDependencies": {
