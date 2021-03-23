@@ -1,6 +1,7 @@
+import { noop } from "jquery";
+
 const APP_BASE_URL = "/";
 const JSON_TYPE = "application/json";
-
 
 export const handleApiError = (response) => {
   if (response.ok) return response;
@@ -30,13 +31,17 @@ export const handleApiError = (response) => {
 /**
  * supports upload too
  */
-export const doFetch = (url, method, data) => {
+export const doFetch = (url, method, data, contentType) => {
+  if (!contentType) {
+    contentType = JSON_TYPE;
+  }
   const params = {
     method: method,
     body: data,
     headers: {
-      "Content-Type": JSON_TYPE,
+      "Content-Type": contentType,
     },
+    redirect: "manual"
   };
   if (data) params.body = data;
 
