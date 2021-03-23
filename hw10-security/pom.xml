@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.yakimov</groupId>
-	<artifactId>hw9-spa-2</artifactId>
+	<artifactId>hw10-security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hw9 single page applciation</name>
+	<name>spring security probe</name>
 	<description>Homework Modern Spring MVC</description>
 
 	<properties>
@@ -90,6 +90,10 @@
 			<artifactId>snakeyaml</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
