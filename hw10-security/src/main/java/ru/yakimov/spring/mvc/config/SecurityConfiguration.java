@@ -39,12 +39,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		//works nice without loginPage("/page/login")
 		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll().and().authorizeRequests()
-				.antMatchers("/built/**").permitAll().and().authorizeRequests().antMatchers("/page/login").permitAll()
-				.and().formLogin().loginProcessingUrl("/perform_login").loginPage("/page/login").defaultSuccessUrl("/page/books", true).and()				
-				.authorizeRequests().anyRequest().authenticated();
-	
+				.antMatchers("/built/**").permitAll()
+				.and().authorizeRequests().antMatchers("/page/login").permitAll()
+				.and().authorizeRequests().antMatchers("/page/loginFailed").permitAll()
+				.and().formLogin()
+				.loginProcessingUrl("/perform_login")
+				.loginPage("/page/login")//work nice without it, but standard form 
+				.defaultSuccessUrl("/page/books", false)
+				.and().authorizeRequests().anyRequest().authenticated();
 	}
 
 	@Bean

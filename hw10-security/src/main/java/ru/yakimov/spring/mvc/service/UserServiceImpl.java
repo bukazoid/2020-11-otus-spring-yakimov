@@ -52,10 +52,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		if (username == null) {
+		User user = dao.findByLogin(username);
+
+		if (user == null) {
 			throw new UsernameNotFoundException(username);
 		}
-		User user = dao.findByLogin(username);
 
 		return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(),
 				Arrays.asList(new SimpleGrantedAuthority(user.getRole())));

@@ -7,6 +7,7 @@ import Authors from './components/Authors';
 import Genres from './components/Genres';
 import Login from './components/Login';
 
+
 import NotFound from './components/NotFound';
 
 const  Main = () => {
@@ -20,6 +21,7 @@ const  Main = () => {
 				<Route path='/page/authors' component={Authors} />
 				<Route path='/page/genres' component={Genres} />
 				<Route path='/page/login' component={Login} />
+				
 				<Route component={NotFound} />
 			</Switch>			
 		</center>

@@ -70,6 +70,7 @@ class Books extends Component {
   confirmDelete = (book) => {};
 
   loadData = () => {
+    console.log("Books: loadData");
     doFetch("/api/books", "GET")
       .then(handleApiError)
       .then((response) => response.json())
@@ -82,7 +83,11 @@ class Books extends Component {
         });
         this.loadGenresAndAuthors();
       })
-      .catch((error) => console.error(error));
+      .catch((err) => {
+        err.then((text) => {
+          console.error("err: " + text);
+        });
+      });
   };
 
   loadAuthors = () => {
