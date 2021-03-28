@@ -18,6 +18,7 @@
         <module>hw5-jdbc</module>
         <module>hw6-jpql</module>
         <module>hw7-spring-data</module>
-        <module>hw9-spa</module>
+        <module>hw9-spa-2</module>
+        <module>hw10-security</module>
     </modules>
 </project>
