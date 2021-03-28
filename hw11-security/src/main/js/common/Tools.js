@@ -15,8 +15,8 @@ export const handleApiError = (response) => {
       throw Promise.resolve("Error.unauthorized-user");
     case 403:
       console.log("Client Error: " + response.statusText);
-      window.location.href = APP_BASE_URL;
-      throw Promise.resolve("Error.invalid-pass-or-login");
+      //  window.location.href = APP_BASE_URL;
+      throw Promise.resolve("Error.forbidden");
     case 404:
       console.log("Client Error: " + response.statusText);
       throw Promise.resolve("Error.resource-not-found");

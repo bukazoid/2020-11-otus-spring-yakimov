@@ -5,6 +5,7 @@ import { handleApiError, doFetch } from "../common/Tools";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 class Books extends Component {
   constructor() {
@@ -42,13 +43,25 @@ class Books extends Component {
       .then(() => this.loadData())
       .catch((error) => {
         //display error
-        console.error(error);
+        error.then((text) => {
+          console.error("error message: " + text);
+          if (text == "Error.forbidden") {
+            // need a way to not do it in every class, redux + own alert component?
+            this.setState({
+              alert: "You have no rights to delete books!",
+            });
+          } else {
+            this.setState({ alert: text });
+          }
+        });
+
         // reload data
         this.loadData();
       });
   };
 
   onSave = (book) => {
+    console.log("store: " + this.props.store);
     const id = book.id;
     let method = "POST";
     let url = "/api/books";
@@ -61,7 +74,19 @@ class Books extends Component {
       .then(() => this.loadData())
       .catch((error) => {
         //display error
-        console.error(error);
+        error.then((text) => {
+          console.error("error message: " + text);
+          if (text == "Error.forbidden") {
+            //this.props.store.dispatch({type: 'alert',value: 'You have no rights to modify/create books!'}); //not workable yet
+            // need a way to not do it in every class, redux + own alert component?
+            this.setState({
+              alert: "You have no rights to modify/create books!",
+            });
+          } else {
+            this.setState({ alert: text });
+          }
+        });
+
         // reload data
         this.loadData();
       });
@@ -80,6 +105,7 @@ class Books extends Component {
           refreshList: false,
           deleteObject: null,
           editObject: null,
+          alert: null,
         });
         this.loadGenresAndAuthors();
       })
@@ -310,9 +336,19 @@ class Books extends Component {
       });
     };
 
+    let warningMessage = "";
+    if (this.state.alert) {
+      warningMessage = (
+        <Alert key="err" variant="warning">
+          {this.state.alert}
+        </Alert>
+      );
+    }
+
     return (
       <div>
         <h1>Book</h1>
+        {warningMessage}
         <Grid model={this.model} data={rows} />
         <Button variant="primary" onClick={handleCreate}>
           Create

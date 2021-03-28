@@ -2,6 +2,7 @@ package ru.yakimov.spring.mvc.rest;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,6 +33,7 @@ public class GenreController {
 		return mng.read(id);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/api/genres/{id}")
 	public Genre put(@PathVariable Long id, @RequestBody Genre genre) {
 		return mng.update(genre);
@@ -41,5 +43,5 @@ public class GenreController {
 	public Genre put(@RequestBody Genre genre) {
 		return mng.create(genre);
 	}
-	
+
 }

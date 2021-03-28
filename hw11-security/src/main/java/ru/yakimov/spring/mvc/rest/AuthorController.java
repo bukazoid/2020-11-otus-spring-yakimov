@@ -2,6 +2,7 @@ package ru.yakimov.spring.mvc.rest;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +32,7 @@ public class AuthorController {
 		return mng.read(id);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/api/authors/{id}")
 	public Author put(@PathVariable Long id, @RequestBody Author author) {
 		return mng.update(author);

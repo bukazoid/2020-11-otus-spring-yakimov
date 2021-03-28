@@ -5,6 +5,7 @@ import { handleApiError, doFetch } from "../common/Tools";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 class Genres extends Component {
   constructor() {
@@ -47,7 +48,17 @@ class Genres extends Component {
       .then(() => this.loadData())
       .catch((error) => {
         //display error
-        console.error(error);
+        error.then((text) => {
+          console.error("error message: " + text);
+          if (text == "Error.forbidden") {
+            // need a way to not do it in every class, redux + own alert component?
+            this.setState({
+              alert: "You have no rights to edit genres!",
+            });
+          } else {
+            this.setState({ alert: text });
+          }
+        });
         // reload data
         this.loadData();
       });
@@ -155,9 +166,20 @@ class Genres extends Component {
 
     const { data } = this.state;
     const rows = this.prepareRows(data);
+
+    let warningMessage = "";
+    if (this.state.alert) {
+      warningMessage = (
+        <Alert key="err" variant="warning">
+          {this.state.alert}
+        </Alert>
+      );
+    }
+
     return (
       <div>
         <h1>Genres</h1>
+        {warningMessage}
         <Grid model={this.model} data={rows} />
         <Button variant="primary" onClick={handleCreate}>
           Create
