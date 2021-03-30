@@ -6,6 +6,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
+import { connect } from "react-redux";
+import { setAlert, justTest } from "../reducers/reposReducer";
 
 class Books extends Component {
   constructor() {
@@ -61,7 +63,9 @@ class Books extends Component {
   };
 
   onSave = (book) => {
-    console.log("store: " + this.props.store);
+    console.log("justTest: " + this.props.justTest);
+    console.log("alertMessage: " + this.props.alertMessage);
+
     const id = book.id;
     let method = "POST";
     let url = "/api/books";
@@ -375,4 +379,10 @@ class Books extends Component {
   }
 }
 
-export default Books;
+const mapStateToProps = (state) => ({
+  alertMessage: state.alertMessage,
+  justTest: state.justTest,
+});
+
+export default connect(mapStateToProps, { setAlert })(Books);
+//export default Books;

@@ -9,22 +9,27 @@ import Login from "./components/Login";
 
 import NotFound from "./components/NotFound";
 
-const Main = () => {  
+import { Provider } from "react-redux";
+import { store } from "./reducers/index";
+
+const Main = () => {
   return (
     <center>
       <a href="/">root</a> <a href="/page/books">books</a>{" "}
       <a href="/page/genres">genres</a> <a href="/page/authors">authors</a>{" "}
       <a href="/logout">logout</a>
       <hr />
-      <Switch>
-        <Route exact path="/" component={Root} />
-        <Route path="/page/books" component={Books} />
-        <Route path="/page/authors" component={Authors} />
-        <Route path="/page/genres" component={Genres} />
-        <Route path="/page/login" component={Login} />
+      <Provider store={store}>
+        <Switch>
+          <Route exact path="/" component={Root} />
+          <Route path="/page/books" component={Books} />
+          <Route path="/page/authors" component={Authors} />
+          <Route path="/page/genres" component={Genres} />
+          <Route path="/page/login" component={Login} />
 
-        <Route component={NotFound} />
-      </Switch>
+          <Route component={NotFound} />
+        </Switch>
+      </Provider>
     </center>
   );
 };
