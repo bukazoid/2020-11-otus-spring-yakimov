@@ -5,9 +5,14 @@ import { BrowserRouter } from "react-router-dom";
 import Main from "./Main";
 import "bootstrap/dist/css/bootstrap.css";
 
+import { Provider } from "react-redux";
+import { store } from "./reducers/index";
+
 ReactDOM.render(
-  <BrowserRouter>
-    <Main />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Main />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("react")
 );

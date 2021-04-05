@@ -9,9 +9,6 @@ import Login from "./components/Login";
 
 import NotFound from "./components/NotFound";
 
-import { Provider } from "react-redux";
-import { store } from "./reducers/index";
-
 const Main = () => {
   return (
     <center>
@@ -19,17 +16,15 @@ const Main = () => {
       <a href="/page/genres">genres</a> <a href="/page/authors">authors</a>{" "}
       <a href="/logout">logout</a>
       <hr />
-      <Provider store={store}>
-        <Switch>
-          <Route exact path="/" component={Root} />
-          <Route path="/page/books" component={Books} />
-          <Route path="/page/authors" component={Authors} />
-          <Route path="/page/genres" component={Genres} />
-          <Route path="/page/login" component={Login} />
+      <Switch>
+        <Route exact path="/" component={Root} />
+        <Route path="/page/books" component={Books} />
+        <Route path="/page/authors" component={Authors} />
+        <Route path="/page/genres" component={Genres} />
+        <Route path="/page/login" component={Login} />
 
-          <Route component={NotFound} />
-        </Switch>
-      </Provider>
+        <Route component={NotFound} />
+      </Switch>
     </center>
   );
 };

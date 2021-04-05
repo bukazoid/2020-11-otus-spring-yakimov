@@ -379,10 +379,13 @@ class Books extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  alertMessage: state.alertMessage,
-  justTest: state.justTest,
-});
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps: " + JSON.stringify(state));
+  return {
+    alertMessage: state.repo.alertMessage,
+    justTest: state.repo.justTest,
+  };
+};
 
-export default connect(mapStateToProps, { setAlert })(Books);
+export default connect(mapStateToProps, null)(Books);
 //export default Books;
