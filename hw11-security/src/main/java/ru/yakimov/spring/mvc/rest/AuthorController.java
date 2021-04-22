@@ -32,7 +32,7 @@ public class AuthorController {
 		return mng.read(id);
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/api/authors/{id}")
 	public Author put(@PathVariable Long id, @RequestBody Author author) {
 		return mng.update(author);
