@@ -18,4 +18,9 @@ developing:
 
 building:
   mvn clean package ; to start java -jar target/hw9-spa-2-0.0.1-SNAPSHOT.jar ; be sure port 8080 is open
+  docker-compose up ; to start all(postgres + application) in docker
+
+additional:
+  docker-compose --file docker-compose-no-build.yml up ; to run it when container already built
+  docker image rm hw/liba ; to delete image
   	

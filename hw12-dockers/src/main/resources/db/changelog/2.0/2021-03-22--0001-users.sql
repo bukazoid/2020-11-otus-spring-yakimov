@@ -3,7 +3,7 @@
 --changeset yakimov:2021-03-22--0001-users
 CREATE TABLE users
 (
-   user_id BIGINT auto_increment,
+   user_id BIGSERIAL,
    login VARCHAR(16),
    password VARCHAR(16),
    role VARCHAR(16),

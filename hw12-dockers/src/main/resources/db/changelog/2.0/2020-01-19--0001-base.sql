@@ -3,21 +3,21 @@
 --changeset yakimov:2020-12-28--0001-base
 CREATE TABLE authors
 (
-   author_id BIGINT auto_increment,
+   author_id BIGSERIAL,
    name VARCHAR,
    PRIMARY KEY (author_id)
 );
 
 CREATE TABLE genres
 (
-   genre_id BIGINT auto_increment,
+   genre_id BIGSERIAL,
    name VARCHAR,
    PRIMARY KEY (genre_id)
 );
 
 CREATE TABLE books
 (
-   book_id BIGINT auto_increment,
+   book_id BIGSERIAL,
    title VARCHAR,
    author_id BIGINT,
    PRIMARY KEY (book_id),
