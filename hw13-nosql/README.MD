@@ -23,10 +23,10 @@ developing:
   * java:  
     - import project and start as spring applicaiton
 
-building:
+building:  
   * mvn clean package
   
-prequelse
+prequels:  
   * you need mongodb at the machine at the default port or 
   * docker run --name mongodb -p27018:27017 mongo
   
