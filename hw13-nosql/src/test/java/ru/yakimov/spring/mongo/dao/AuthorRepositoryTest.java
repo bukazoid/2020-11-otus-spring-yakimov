@@ -24,13 +24,13 @@ import ru.yakimov.spring.mongo.repositories.AuthorRepository;
 @Import(EventHandlerAuthor.class)
 public class AuthorRepositoryTest {
 	// XXX: can be useful one day
-	// @TestConfiguration
-	// public static class TestContextConfiguration {
-	// @Bean
-	// public EventHandlerAuthor eventHandler(BookRepository bookRepo) {
-	// return new EventHandlerAuthor(bookRepo);
-	// }
-	// }
+	//	@TestConfiguration
+	//	public static class TestContextConfiguration {
+	//		@Bean
+	//		public EventHandlerAuthor eventHandler(BookRepository bookRepo) {
+	//			return new EventHandlerAuthor(bookRepo);
+	//		}
+	//	}
 
 	String HOMER_NAME = "Homer";
 	String HOME_ID = "1";
