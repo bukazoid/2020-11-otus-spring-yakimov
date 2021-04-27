@@ -1,6 +1,13 @@
-Админу разрешается все
-Пользователю только просмотр и добавление жанров и авторов
-не авторизованному только root и логин
+MongoDB "без фанатизма"
+
+* MongoDB вместо базы данных
+* MongoDb listener на удаление автора
+* Mongock для инициализации данных
+* MongoDb тесты
+* embedded mongodb для тестов
+
+Админ: admin/admin
+все работает как раньше
 
 известный баг - при создании книги надо выбрать автора, т.е. изменить выбор по умолчанию :(
 
@@ -17,5 +24,12 @@ developing:
     import project and start as spring applicaiton
 
 building:
-  mvn clean package ; to start java -jar target/hw9-spa-2-0.0.1-SNAPSHOT.jar ; be sure port 8080 is open
+  mvn clean packag
+  
+prequelse
+	you need mongodb at the machine at the default port or 
+	docker run --name mongodb -p27018:27017 mongo
+  
+to start:  
+  java -jar target/hw13-nosql-0.0.1-SNAPSHOT.jar ; be sure port 8080 is open
   	
