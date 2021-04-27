@@ -1,12 +1,14 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    initialization-mode: always
-    
-  h2:
-    console:
-      enabled: true
-    
-  liquibase:
-    enabled: true
-    
+  data:
+    mongodb:
+      database: liba
+      
+mongock:
+  runner-type: "ApplicationRunner" # default
+  #runner-type: "InitializingBean" # when shell will be used
+  change-logs-scan-package:
+    - ru.yakimov.spring.mongo.changelogs
+      
+logging:
+  level:
+    root: INFO

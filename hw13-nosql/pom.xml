@@ -10,36 +10,57 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.yakimov</groupId>
-	<artifactId>hw11-security</artifactId>
+	<artifactId>hw13-nosql</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring security - authorization</name>
-	<description>Spring security: Single page application</description>
+	<name>spring nosql - mongo</name>
+	<description>MongoDb: Single page application</description>
 
 	<properties>
 		<java.version>11</java.version>
 		<minimal.maven.version>3.3.9</minimal.maven.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mongock.version>4.1.17</mongock.version>
 	</properties>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework.shell/spring-shell-starter -->
 		<!-- <dependency> <groupId>org.springframework.shell</groupId> <artifactId>spring-shell-starter</artifactId> 
 			<version>2.0.1.RELEASE</version> </dependency> -->
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
 
 		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
+			<groupId>com.github.cloudyrock.mongock</groupId>
+			<artifactId>mongock-spring-v5</artifactId>
+			<version>${mongock.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.cloudyrock.mongock</groupId>
+			<artifactId>mongodb-springdata-v3-driver</artifactId>
+			<version>${mongock.version}</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		 -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,11 +75,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
 		</dependency>
 
 		<dependency>
