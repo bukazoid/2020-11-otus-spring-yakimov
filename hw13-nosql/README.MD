@@ -12,22 +12,22 @@ MongoDB "без фанатизма"
 известный баг - при создании книги надо выбрать автора, т.е. изменить выбор по умолчанию :(
 
 developing: 
-  js:
-	* npm install ; - once
-	* npm start   ; - before coding
+  * js:  
+	- npm install ; - once
+	- npm start   ; - before coding
 	; browser will be openned at http://localhost:8081/ 
 	
-  js-alternative 	
-	* sh watch.sh (or cmd watch.bat) and open browser at http://localhost:8080/
+  * js-alternative:  
+    - sh watch.sh (or cmd watch.bat) and open browser at http://localhost:8080/
 	 
-  java: 
-    * import project and start as spring applicaiton
+  * java:  
+    - import project and start as spring applicaiton
 
 building:
   * mvn clean package
   
 prequelse
-  - you need mongodb at the machine at the default port or 
+  * you need mongodb at the machine at the default port or 
   * docker run --name mongodb -p27018:27017 mongo
   
 to start:  
