@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Book {
 	@Id
-//	@Column(name = "book_id")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 
 	private String title;
@@ -23,6 +21,7 @@ public class Book {
 	@DBRef
 	private Author author;
 
+	@DBRef
 	private List<Genre> genres;
 
 	public Book(String title, Author author, List<Genre> genres) {
