@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      port: 0
+      database: test
+      
+mongock:
+  runner-type: "ApplicationRunner" # default
+  #runner-type: "InitializingBean" # when shell will be used
+  change-logs-scan-package:
+    - ru.yakimov.spring.mongo.test.changelogs
+    
+logging:
+  level:
+    root: ERROR

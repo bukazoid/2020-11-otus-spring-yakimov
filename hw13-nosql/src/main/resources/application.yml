@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      database: liba
+      
+mongock:
+  runner-type: "ApplicationRunner" # default
+  #runner-type: "InitializingBean" # when shell will be used
+  change-logs-scan-package:
+    - ru.yakimov.spring.mongo.changelogs
+      
+logging:
+  level:
+    root: INFO

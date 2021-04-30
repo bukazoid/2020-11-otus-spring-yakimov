@@ -1,0 +1,17 @@
+spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/liba
+#    username: postgres
+#    password: postgres
+#    initialization-mode: always
+  datasource:
+    driver-class-name: ${DB_DRIVER}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}    
+    initialization-mode: always
+
+    
+  liquibase:
+    enabled: true
+    

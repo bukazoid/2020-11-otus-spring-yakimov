@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hw/liba
+    environment:
+      - DB_DRIVER=org.postgresql.Driver
+      - DB_URL=jdbc:postgresql://liba-db:5432/liba
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - WAIT_FOR=liba-db:5432
+    ports:
+      - "8080:8080" 
+    networks:
+      - liba-nw
+  liba-db:
+    image: "postgres"
+#    ports:
+#      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=liba
+    networks:
+      - liba-nw
+networks:
+  liba-nw:
